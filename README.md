@@ -1,7 +1,7 @@
 # Eating Hall
 Eating Hall is a C/C++ university project for dealing with university eating hall.
 
-##Installation
+## Installation
 Git clone:
 
 ```bash
@@ -24,5 +24,5 @@ Compile BackendApp:
 ./BackendApp
 ```
 
-##Contributors:
+## Contributors:
 - [Angel Stoynov](https://github.com/StoynovAngel)
