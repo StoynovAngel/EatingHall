@@ -36,6 +36,8 @@ cmake_install.cmake
 *.swn
 *.tmp
 
+Backend/BackendApp
+
 # Backup and temporary files
 *~
 *.bak
