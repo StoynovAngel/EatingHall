@@ -21,7 +21,7 @@ make
 
 Compile BackendApp:
 ```bash
-./BackendApp
+./build/BackendApp
 ```
 
 ## Contributors:
