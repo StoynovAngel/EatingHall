@@ -6,9 +6,10 @@
 class User{
 private:
     std::string username;
-    double balance = 100.0;
+    double balance;
 public:
     User(const std::string& username);
+    User(const std::string& username, double balance);
     std::string getUsername() const;
     double getBalance() const;
 };

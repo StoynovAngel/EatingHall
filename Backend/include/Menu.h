@@ -3,6 +3,6 @@
 
 class Menu{
     public:
-        static void showMenu(int choice);
+        static void showMenu();
 };
 #endif

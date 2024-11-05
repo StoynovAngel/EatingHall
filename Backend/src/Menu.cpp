@@ -2,7 +2,8 @@
 #include "Menu.h"
 using namespace std;
 
-void Menu::showMenu(int choice){
+void Menu::showMenu(){
+    int choice;
     while(choice != 0){
         cout << "1. Check profile" << endl;
         cout << "2. Check group profile" << endl;
