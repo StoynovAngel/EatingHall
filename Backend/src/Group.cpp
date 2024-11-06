@@ -1,5 +1,6 @@
 #include "Group.h"
 #include "Validation.h"
+#include "User.h"
 #include <stdexcept>
 
 Group::Group(const std::string&  groupName) {
@@ -23,8 +24,8 @@ void Group::addUser(const User& user) {
 
 std::ostream& operator<<(std::ostream& os, const Group& group) {
     os << "Group Name: " << group.getGroupName() << "\nUsers:\n";
-    for (const auto& user : group.users) {
-        os << " - " << user.getUsername() << " - " << user.getBalance() << std::endl;
+    for (const auto& user : group.getUsers()) {
+        os << " - " << user << "\n"; 
     }
     return os;
 }

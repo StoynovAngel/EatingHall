@@ -7,7 +7,7 @@ namespace Validation {
         return !value.empty();
     }
 
-    bool isNonNegative(double value) {
+    bool isNotNegative(double value) {
         return value >= 0;
     }
 

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <ostream>
 #include "User.h"
 
 class Group{
@@ -16,7 +17,7 @@ public:
     const std::vector<User>& getUsers() const; 
     void addUser(const User& user);  
 
-    friend std::ostream& operator << (std::ostream& os, const Group& group);
+    friend std::ostream& operator<<(std::ostream& os, const Group& group);
 };
 
 #endif

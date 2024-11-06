@@ -4,7 +4,7 @@
 
 namespace Validation{
     bool isNotEmpty(const std::string& value);
-    bool isNotNegative(const double value);
+    bool isNotNegative(double value);
     bool isAlphanumeric(const std::string& value);
     bool isAlpha(const std::string& value);
 };
