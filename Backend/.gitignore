@@ -6,6 +6,9 @@
 *.gch
 *.pch
 
+
+groups.txt
+
 # Compiled dynamic libraries
 *.so
 *.dylib
