@@ -39,9 +39,9 @@ void User::addGrade(const Grade& grade){
 }
 
 std::ostream& operator<<(std::ostream& os, const User& user) {
-    os << "Username: " << user.getUsername() << "\nBalance: " << user.getBalance() << "\nGrades:\n";
+    os << "Username: " << user.getUsername() << "\n    Balance: " << user.getBalance() << "\n    Grades:\n";
     for (const auto& grade : user.getGrades()) {
-        os << "   - " << grade << "\n"; 
+        os << "     - " << grade << "\n"; 
     }
     return os;
 }

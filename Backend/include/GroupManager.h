@@ -11,6 +11,8 @@ class GroupManager{
         std::unordered_map<std::string, Group> groups;
     public:
         bool addGroup(const Group& group);
+        Group* getGroupByName(const std::string& name) ;
+        void displayAllGroups(std::ostream& os = std::cout) const;
 };
 
 #endif

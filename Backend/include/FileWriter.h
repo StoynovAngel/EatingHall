@@ -8,14 +8,15 @@
 
 class FileWriter{
     public:
-        static void writeToGroup(const Group& group) {
-            std::ofstream myFile("groups.txt", std::ios::app);
-            if (myFile.is_open()) {
-                myFile << group << std::endl;
-            } else {
+        static void writeToGroup(const GroupManager& groupManager) {
+            std::ofstream myFile("groups.txt"); 
+            if (!myFile.is_open()) {
                 std::cerr << "Error: Unable to open file 'groups.txt'" << std::endl;
+                return;
             }
-    }
+            groupManager.displayAllGroups(myFile);
+            std::cout << "Groups saved to 'groups.txt'.\n";
+        }
 };
 
 #endif

@@ -9,3 +9,21 @@ bool GroupManager::addGroup(const Group& group) {
     }
     return true;
 }
+
+Group* GroupManager::getGroupByName(const std::string& name) {
+    auto it = groups.find(name);
+    if (it != groups.end()) {
+        return &it->second;
+    }
+    return nullptr;
+}
+
+void GroupManager::displayAllGroups(std::ostream& os) const {
+    if (groups.empty()) {
+        os << "No groups to display.\n";
+    } else {
+        for (const auto& pair : groups) {
+            os << pair.second << "\n";
+        }
+    }
+}
