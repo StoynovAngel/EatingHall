@@ -19,19 +19,27 @@ void SystemManager::addGroupMenu() {
 }
 
 void SystemManager::addUserToGroupMenu() {
-    std::string groupName, username;
-    double balance;
-    std::vector<Grade> grades;
-    std::string gradeInput;
-    std::string subjectInput;
-    double mark;
+    std::string groupName;
 
     std::cout << "Enter group name to add user: ";
     std::cin >> groupName;
     Group* group = groupManager.getGroupByName(groupName);
-    if (group) {
-        std::cout << "Enter username: ";
+
+    if (!group) {
+        std::cout << "No such group" << "\n";
+        return;
+    }
+    while (true) {
+        std::string username;
+        double balance;
+        std::vector<Grade> grades;
+        std::string gradeInput;
+        std::string subjectInput;
+        double mark;
+
+        std::cout << "Enter username (or type 'done' to finish): ";
         std::cin >> username;
+        if (username == "done") break;
 
         if (!UserValidation::isValidUsername(username)) {
             std::cerr << "Invalid username. User could not be added.\n";
@@ -66,9 +74,44 @@ void SystemManager::addUserToGroupMenu() {
         User user(username, balance, grades);
         group->addUser(user);
         std::cout << "User added successfully to the group.\n";
-    } else {
-        std::cout << "Group not found.\n";
     }
+}
+
+void SystemManager::getUserFromGroupMenu() {
+    std::string groupName, username;
+
+    std::cout << "Enter group name: ";
+    std::cin >> groupName;
+    Group* group = groupManager.getGroupByName(groupName);
+
+    if (!group) {
+        std::cout << "No such group.\n";
+        return;
+    }
+
+    std::cout << "Enter username to search: ";
+    std::cin >> username;
+
+    User* user = group->findUser(username);
+    if (user) {
+        std::cout << *user;
+    } else {
+        std::cout << "User not found in the group.\n";
+    }
+}
+
+void SystemManager::viewGroupMenu() {
+    std::string groupName;
+
+    std::cout << "Enter group name: ";
+    std::cin >> groupName;
+    Group* group = groupManager.getGroupByName(groupName);
+
+    if (!group) {
+        std::cout << "No such group.\n";
+        return;
+    }
+    std::cout << *group;
 }
 
 
@@ -81,6 +124,8 @@ void SystemManager::showMenu() {
         std::cout << "3. Display Groups\n";
         std::cout << "4. Save to File\n";
         std::cout << "5. Load from File\n";
+        std::cout << "6. Get specific user\n";
+        std::cout << "7. Get specific group\n";
         std::cout << "0. Exit\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -91,6 +136,8 @@ void SystemManager::showMenu() {
             case 3: groupManager.displayAllGroups(); break;
             case 4: FileWriter::writeToGroup(groupManager); break;
             case 5: FileReader::readFromGroup(); break;
+            case 6: getUserFromGroupMenu(); break;
+            case 7: viewGroupMenu(); break;
             case 0: std::cout << "Exiting...\n"; break;
             default: std::cout << "Invalid choice. Try again.\n"; break;
         }

@@ -23,6 +23,7 @@ public:
     void addUser(const User& user);  
     void setDiscount(double discount);
     void setDischarge(double discharge);
+    User* findUser(const std::string& username);
 
     friend std::ostream& operator<<(std::ostream& os, const Group& group);
 };

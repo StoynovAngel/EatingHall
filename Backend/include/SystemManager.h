@@ -19,6 +19,8 @@ public:
     void addUserToGroupMenu();
     void displayGroups() const;
     void showMenu();
+    void getUserFromGroupMenu();
+    void viewGroupMenu();
 };
 
 #endif

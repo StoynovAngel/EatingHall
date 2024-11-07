@@ -32,6 +32,15 @@ void Group::setDischarge(double discharge){
     this->discharge = discharge;
 }
 
+User* Group::findUser(const std::string& username) {
+    for(auto& user: users){
+        if(user.getUsername() == username){
+            return &user;
+        }
+    }
+    return nullptr;
+}
+
 std::ostream& operator<<(std::ostream& os, const Group& group) {
     os << "Group Name: " << group.getGroupName() << "\n";
     os << "--Discount: " << group.discount << "\n";
