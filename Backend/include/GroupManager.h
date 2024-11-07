@@ -13,6 +13,8 @@ class GroupManager{
         bool addGroup(const Group& group);
         Group* getGroupByName(const std::string& name) ;
         void displayAllGroups(std::ostream& os = std::cout) const;
+        Group* groupByNameHelper();
+        void userHandler(Group* group);
 };
 
 #endif
