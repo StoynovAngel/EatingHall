@@ -76,7 +76,19 @@ void SystemManager::showMenu() {
             case 2: addUserToGroupMenu(); break;
             case 3: groupManager.displayAllGroups(); break;
             case 4: FileWriter::writeToGroup(groupManager); break;
-            case 5: FileReader::readFromGroup(); break;
+            case 5: {
+                std::vector<Group> loadedGroups = FileReader::readFromGroup();
+                if (!loadedGroups.empty()) {
+                    for (const auto& group : loadedGroups) {
+                        groupManager.addGroup(group); 
+                    }
+                    std::cout << "Groups loaded successfully.\n";
+                    groupManager.displayAllGroups();
+                } else {
+                    std::cout << "No groups were loaded.\n";
+                }
+                break;
+            }
             case 6: getUserFromGroupMenu(); break;
             case 7: viewGroupMenu(); break;
             case 0: std::cout << "Exiting...\n"; break;

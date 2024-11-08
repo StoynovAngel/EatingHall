@@ -38,7 +38,7 @@ Group* GroupManager::groupByNameHelper() {
 
     if (!group) {
         std::cout << "No such group.\n";
-        return;
+        return nullptr; 
     }
     return group;
 }

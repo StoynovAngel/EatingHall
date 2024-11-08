@@ -38,10 +38,18 @@ void User::addGrade(const Grade& grade){
     grades.push_back(grade);
 }
 
+void User::setUsername(std::string username){
+    this->username = username;
+}
+
+void User::setBalance(double balance){
+    this->balance = balance;
+}
+
 std::ostream& operator<<(std::ostream& os, const User& user) {
-    os << "Username: " << user.getUsername() << "\n    Balance: " << user.getBalance() << "\n    Grades:\n";
+    os << "Username: " << user.getUsername() << "\nBalance: " << user.getBalance() << "\nGrades:\n";
     for (const auto& grade : user.getGrades()) {
-        os << "     - " << grade << "\n"; 
+        os << " - " << grade << "\n"; 
     }
     return os;
 }

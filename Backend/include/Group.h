@@ -14,6 +14,7 @@ private:
     double discount;
     double discharge;
 public:
+    Group() = default;
     Group(const std::string&  groupName, const double discount, const double discharge);
     std::string getGroupName() const;
     double getDiscount() const;
@@ -23,6 +24,7 @@ public:
     void addUser(const User& user);  
     void setDiscount(double discount);
     void setDischarge(double discharge);
+    void setGroupName(std::string groupName);
     User* findUser(const std::string& username);
 
     friend std::ostream& operator<<(std::ostream& os, const Group& group);

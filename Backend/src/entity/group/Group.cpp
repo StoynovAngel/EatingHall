@@ -32,6 +32,10 @@ void Group::setDischarge(double discharge){
     this->discharge = discharge;
 }
 
+void Group::setGroupName(std::string groupName){
+    this->groupName = groupName;
+}
+
 User* Group::findUser(const std::string& username) {
     for(auto& user: users){
         if(user.getUsername() == username){
@@ -45,7 +49,6 @@ std::ostream& operator<<(std::ostream& os, const Group& group) {
     os << "Group Name: " << group.getGroupName() << "\n";
     os << "--Discount: " << group.discount << "\n";
     os << "--Discharge: " << group.discharge << "\n";
-    os << "Users:\n";
     for (const auto& user : group.getUsers()) {
         os << "--" << user << "\n"; 
     }
