@@ -9,8 +9,13 @@ void SystemManager::addGroupMenu() {
     std::cin >> groupName;
     std::cout << "Enter discount: ";
     std::cin >> discount;
-    std::cout << "Enter surcharge: ";
-    std::cin >> surcharge;
+    
+    if(discount <= 0){
+        std::cout << "Enter surcharge: ";
+        std::cin >> surcharge;
+    }else{
+        surcharge = 0;
+    }
 
     Group group(groupName, discount, surcharge);
     if (!groupManager.addGroup(group)) {
@@ -75,20 +80,8 @@ void SystemManager::showMenu() {
             case 1: addGroupMenu(); break;
             case 2: addUserToGroupMenu(); break;
             case 3: groupManager.displayAllGroups(); break;
-            case 4: FileWriter::writeToGroup(groupManager); break;
-            case 5: {
-                std::vector<Group> loadedGroups = FileReader::readFromGroup();
-                if (!loadedGroups.empty()) {
-                    for (const auto& group : loadedGroups) {
-                        groupManager.addGroup(group); 
-                    }
-                    std::cout << "Groups loaded successfully.\n";
-                    groupManager.displayAllGroups();
-                } else {
-                    std::cout << "No groups were loaded.\n";
-                }
-                break;
-            }
+            case 4: FileWriter::writeToFile(groupManager, groupManager.searchGroup()); break;
+            case 5: FileReader::readFromFile(groupManager.searchGroup()); break;
             case 6: getUserFromGroupMenu(); break;
             case 7: viewGroupMenu(); break;
             case 0: std::cout << "Exiting...\n"; break;

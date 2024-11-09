@@ -19,7 +19,15 @@ double Grade::getMark() const{
     return mark;
 }
 
+void Grade::setMark(double mark){
+    this->mark = mark;
+}
+
+void Grade::setSubject(std::string subject){
+    this->subject = subject;
+}
+
 std::ostream& operator<<(std::ostream& os, const Grade& grade) {
-    os << "Subject: " << grade.getSubject() << ", Grade: " << grade.getMark();
+    os << "    Subject: " << grade.getSubject() << ", Grade: " << grade.getMark();
     return os;
 }

@@ -5,9 +5,8 @@
 *.exe
 *.gch
 *.pch
+*.txt
 
-
-groups.txt
 
 # Compiled dynamic libraries
 *.so

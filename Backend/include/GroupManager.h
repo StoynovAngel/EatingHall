@@ -15,6 +15,7 @@ class GroupManager{
         void displayAllGroups(std::ostream& os = std::cout) const;
         Group* groupByNameHelper();
         void userHandler(Group* group);
+        std::string searchGroup();
 };
 
 #endif

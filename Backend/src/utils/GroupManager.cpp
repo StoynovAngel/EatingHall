@@ -70,25 +70,36 @@ void GroupManager::userHandler(Group* group) {
             return;
         }
 
-        std::cout << "(type 'done' when finished): \n";
-        while (true) {
-            std::cout << "Enter subject: ";
-            std::cin >> subjectInput;
-            if (subjectInput == "done") break;
+        if (group->getGroupName() != "out"){
+            std::cout << "(type 'done' when finished): \n";
+            while (true) {
+                std::cout << "Enter subject: ";
+                std::cin >> subjectInput;
+                if (subjectInput == "done") break;
 
-            std::cout << "Enter mark: ";
-            std::cin >> gradeInput;
+                std::cout << "Enter mark: ";
+                std::cin >> gradeInput;
 
-            try {
-                mark = std::stod(gradeInput);
-                grades.push_back(Grade(subjectInput, mark));
-            } catch (...) {
-                std::cerr << "Invalid grade. Please enter a valid number or 'done'.\n";
-            }
+                try {
+                    mark = std::stod(gradeInput);
+                    grades.push_back(Grade(subjectInput, mark));
+                } catch (...) {
+                    std::cerr << "Invalid grade. Please enter a valid number or 'done'.\n";
+                }
+            
+        }
+
         }
 
         User user(username, balance, grades);
         group->addUser(user);
         std::cout << "User added successfully to the group.\n";
     }
+}
+
+std::string GroupManager::searchGroup(){
+    std::string filename;
+    std::cout << "Enter filename to save groups: ";
+    std::cin >> filename;
+    return filename;
 }

@@ -15,7 +15,7 @@ private:
     double discharge;
 public:
     Group() = default;
-    Group(const std::string&  groupName, const double discount, const double discharge);
+    Group(const std::string&  groupName, double discount, double discharge);
     std::string getGroupName() const;
     double getDiscount() const;
     double getDischarge() const;
