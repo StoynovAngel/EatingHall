@@ -52,6 +52,7 @@ void GroupManager::userHandler(Group* group) {
         std::string gradeInput;
         std::string subjectInput;
         double mark;
+        double userDiscount;
 
         std::cout << "Enter username (or type 'done' to finish): ";
         std::cin >> username;
@@ -86,20 +87,30 @@ void GroupManager::userHandler(Group* group) {
                 } catch (...) {
                     std::cerr << "Invalid grade. Please enter a valid number or 'done'.\n";
                 }
-            
-        }
+            }
 
         }
+        
+        User user(username, balance, grades, 0.0);
+        double avgGrade = user.getAverageGrade();
+        std::cout << "Average Grade: " << avgGrade << std::endl;
 
-        User user(username, balance, grades);
+        if (avgGrade >= 4.0) {
+            user.setDiscount(5.0);
+            std::cout << "Discount set to 5%" << std::endl;
+        } else {
+            user.setDiscount(0.0);
+            std::cout << "Discount set to 0%" << std::endl;
+        }
         group->addUser(user);
         std::cout << "User added successfully to the group.\n";
+
     }
 }
 
 std::string GroupManager::searchGroup(){
     std::string filename;
-    std::cout << "Enter filename to save groups: ";
+    std::cout << "Enter filename: ";
     std::cin >> filename;
     return filename;
 }

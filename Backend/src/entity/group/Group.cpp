@@ -3,13 +3,13 @@
 #include "User.h"
 #include <stdexcept>
 
-Group::Group(const std::string&  groupName, double discount, double discharge) {
+Group::Group(const std::string&  groupName, double discount, double surcharge) {
     if (!Validation::isAlphanumeric(groupName) || !Validation::isNotNegative(discount)) {
         throw std::invalid_argument("Invalid group name.");
     }
     this->groupName = groupName;
     this->discount = discount;
-    this->discharge = discharge;
+    this->surcharge = surcharge;
 }
 
 std::string Group::getGroupName() const {
@@ -28,8 +28,8 @@ void Group::setDiscount(double discount) {
     this->discount = discount;
 }
 
-void Group::setDischarge(double discharge){
-    this->discharge = discharge;
+void Group::setSurcharge(double surcharge){
+    this->surcharge = surcharge;
 }
 
 void Group::setGroupName(std::string groupName){
@@ -48,7 +48,7 @@ User* Group::findUser(const std::string& username) {
 std::ostream& operator<<(std::ostream& os, const Group& group) {
     os << "Group Name: " << group.getGroupName() << "\n";
     os << "    Discount: " << group.discount << "\n";
-    os << "    Discharge: " << group.discharge << "\n";
+    os << "    surcharge: " << group.surcharge << "\n";
     os << "Users:" << "\n"; 
     for (const auto& user : group.getUsers()) {
         os << "    " << user << "\n"; 

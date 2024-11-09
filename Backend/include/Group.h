@@ -12,18 +12,18 @@ private:
     std::string groupName;
     std::vector<User> users;
     double discount;
-    double discharge;
+    double surcharge;
 public:
     Group() = default;
-    Group(const std::string&  groupName, double discount, double discharge);
+    Group(const std::string&  groupName, double discount, double surcharge);
     std::string getGroupName() const;
     double getDiscount() const;
-    double getDischarge() const;
+    double getSurcharge() const;
     const std::vector<User>& getUsers() const; 
 
     void addUser(const User& user);  
     void setDiscount(double discount);
-    void setDischarge(double discharge);
+    void setSurcharge(double surcharge);
     void setGroupName(std::string groupName);
     User* findUser(const std::string& username);
 

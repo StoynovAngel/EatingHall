@@ -9,7 +9,7 @@ void SystemManager::addGroupMenu() {
     std::cin >> groupName;
     std::cout << "Enter discount: ";
     std::cin >> discount;
-    
+
     if(discount <= 0){
         std::cout << "Enter surcharge: ";
         std::cin >> surcharge;
