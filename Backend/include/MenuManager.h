@@ -15,6 +15,7 @@ class MenuManager{
     private:
         SystemManager systemManager;
         GroupManager groupManager;
+        bool groupsLoaded = false;
     public:
         void showMenu();
 };

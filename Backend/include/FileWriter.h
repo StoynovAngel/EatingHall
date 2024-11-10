@@ -6,21 +6,24 @@
 #include "Validation.h"
 #include "Group.h"
 #include <string>
+#include <filesystem> 
 
 class FileWriter{
     public:
-        static void writeToFile(const Group& group) {
-            std::string filename = group.getGroupName() + ".txt";
-            std::ofstream myFile(filename); 
+        static void writeToFile(const Group& group, const std::string& filepath) {
+            std::filesystem::create_directories("files");
+
+            std::ofstream myFile(filepath);
             if (!myFile.is_open()) {
-                std::cerr << "Error: Unable to open file " << filename << std::endl;
+                std::cerr << "Error: Unable to open file " << filepath << std::endl;
                 return;
             }
 
             myFile << group;
             myFile.close();
-            
+
         }
+            
 };
 
 #endif

@@ -1,6 +1,6 @@
-#include <iostream>
-#include <fstream>
 #include "SystemManager.h"
+
+namespace fs = std::filesystem;
 
 void SystemManager::addGroupMenu(GroupManager& groupManager) {
     std::string groupName;
@@ -10,16 +10,19 @@ void SystemManager::addGroupMenu(GroupManager& groupManager) {
     std::cout << "Enter discount: ";
     std::cin >> discount;
 
-    if(discount == 0){
+    if (discount == 0) {
         std::cout << "Enter surcharge: ";
         std::cin >> surcharge;
-    }else{
+    } else {
         surcharge = 0;
     }
 
     Group group(groupName, discount, surcharge);
     if (!groupManager.addGroup(group)) {
         std::cout << "Group could not be added.\n";
+    } else {
+        saveGroupToFile(group);
+        std::cout << "Group saved to file.\n";
     }
 }
 
@@ -61,17 +64,44 @@ void SystemManager::viewGroupMenu(GroupManager& groupManager) {
     std::cout << *group;
 }
 
-void SystemManager::loadGroupsFromFile(GroupManager& groupManager) {
+void SystemManager::loadGroupFromFile(GroupManager& groupManager) {
     std::string filename;
-    std::cout << "Enter the filename to load groups from: ";
+    std::cout << "Enter the filename to load groups from (without .txt): ";
     std::cin >> filename;
-    std::vector<Group> loadedGroups = FileReader::readFromFile(filename);
+
+    std::string filePath = "files/" + filename + ".txt";
+    
+    std::vector<Group> loadedGroups = FileReader::readFromFile(filePath);
+    
     for (const auto& group : loadedGroups) {
         groupManager.addGroup(group);
     }
-    std::cout << "Groups loaded successfully from " << filename << ".txt\n";
+    
+    std::cout << "Groups loaded successfully from " << filePath << "\n";
 }
 
 void SystemManager::saveGroupToFile(const Group& group) {
-    FileWriter::writeToFile(group);
+    std::string directory = "files/";
+    std::string filepath = directory + group.getGroupName() + ".txt";
+    FileWriter::writeToFile(group, filepath);
+}
+
+void SystemManager::loadAllFiles(GroupManager& groupManager) {
+    std::string directory = "files/";
+    try {
+
+        for (const auto& entry : fs::directory_iterator(directory)) {
+            if (entry.is_regular_file() && entry.path().extension() == ".txt") {
+                std::string filename = entry.path().filename().string();
+                std::cout << "Loading group from file: " << filename << std::endl;
+                std::vector<Group> loadedGroups = FileReader::readFromFile(entry.path().string());
+                for (const auto& group : loadedGroups) {
+                    groupManager.addGroup(group);
+                }
+            }
+        }
+        std::cout << "All groups have been loaded successfully from the directory.\n";
+    } catch (const std::filesystem::filesystem_error& e) {
+        std::cerr << "Error accessing directory: " << e.what() << std::endl;
+    }
 }

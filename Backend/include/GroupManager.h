@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 #include "Group.h"
+#include <filesystem>
+#include "FileReader.h"
 
 class GroupManager{
     private:

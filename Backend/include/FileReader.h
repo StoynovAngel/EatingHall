@@ -12,7 +12,7 @@
 class FileReader{
     public:
         static std::vector<Group> readFromFile(const std::string& filename) {
-            std::ifstream myFile(filename + ".txt");
+            std::ifstream myFile(filename);
             if (!myFile.is_open()) {
                 std::cerr << "Error: Unable to open file " << filename << std::endl;
                 return {}; 

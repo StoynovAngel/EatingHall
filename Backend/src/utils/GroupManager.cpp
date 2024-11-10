@@ -1,13 +1,25 @@
 #include "GroupManager.h"
 #include "Group.h"
 #include "Validation.h"
+#include "FileReader.h"
+
+namespace fs = std::filesystem;
 
 bool GroupManager::addGroup(const Group& group) {
-    auto result = groups.emplace(group.getGroupName(), group);
-    if (!result.second) {
+    std::cout << "Trying to add group with name: " << group.getGroupName() << "\n";
+    
+    if (groups.find(group.getGroupName()) != groups.end()) {
+        std::cout << "Group already exists in the map.\n";
         std::cout << "Group with name '" << group.getGroupName() << "' already exists.\n";
         return false;
     }
+
+    auto result = groups.emplace(group.getGroupName(), group);
+    if (!result.second) {
+        std::cout << "Failed to add group with name '" << group.getGroupName() << "'.\n";
+        return false;
+    }
+    std::cout << "Group added successfully.\n";
     return true;
 }
 
@@ -66,15 +78,26 @@ Group* GroupManager::searchGroup() {
     std::cout << "Enter group name: ";
     std::cin >> groupName;
 
-    auto it = groups.find(groupName);
-    if (it != groups.end()) {
-        return &it->second;
-    } else {
-        std::cout << "Group '" << groupName << "' not found." << std::endl;
-        return nullptr;
+    if (groups.find(groupName) != groups.end()) {
+        return &groups[groupName];
     }
-}
+    std::string filePath = "files/" + groupName + ".txt";
+    if (fs::exists(filePath)) {
 
+        std::vector<Group> loadedGroups = FileReader::readFromFile(filePath);
+        if (!loadedGroups.empty()) {
+            Group group = loadedGroups[0];
+            groups[groupName] = group;
+            return &groups[groupName];
+        } else {
+            std::cout << "Error: File " << filePath << " is empty or does not contain valid groups.\n";
+            return nullptr;
+        }
+    }
+
+    std::cout << "Group '" << groupName << "' not found." << std::endl;
+    return nullptr;
+}
 void GroupManager::gradeHandler(std::vector<Grade>& grades) {
     std::string subjectInput;
     double mark;
