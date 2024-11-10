@@ -19,16 +19,6 @@ Group* GroupManager::getGroupByName(const std::string& name) {
     return nullptr;
 }
 
-void GroupManager::displayAllGroups(std::ostream& os) const {
-    if (groups.empty()) {
-        os << "No groups to display.\n";
-    }
-    for (const auto& pair : groups) {
-        os << pair.second << "\n";
-    }
-    
-}
-
 Group* GroupManager::groupByNameHelper() {
     std::string groupName;
 
@@ -71,11 +61,18 @@ void GroupManager::userHandler(Group* group) {
     }
 }
 
-std::string GroupManager::searchGroup(){
-    std::string filename;
-    std::cout << "Enter filename: ";
-    std::cin >> filename;
-    return filename;
+Group* GroupManager::searchGroup() {
+    std::string groupName;
+    std::cout << "Enter group name: ";
+    std::cin >> groupName;
+
+    auto it = groups.find(groupName);
+    if (it != groups.end()) {
+        return &it->second;
+    } else {
+        std::cout << "Group '" << groupName << "' not found." << std::endl;
+        return nullptr;
+    }
 }
 
 void GroupManager::gradeHandler(std::vector<Grade>& grades) {

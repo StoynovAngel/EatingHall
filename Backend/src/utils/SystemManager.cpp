@@ -35,6 +35,7 @@ void SystemManager::addUserToGroupMenu(GroupManager& groupManager) {
         return;
     }
     groupManager.userHandler(group);
+    saveGroupToFile(*group);
 }
 
 void SystemManager::getUserFromGroupMenu(GroupManager& groupManager) {
@@ -58,4 +59,19 @@ void SystemManager::viewGroupMenu(GroupManager& groupManager) {
     Group* group = groupManager.groupByNameHelper();
     if (!group) return;
     std::cout << *group;
+}
+
+void SystemManager::loadGroupsFromFile(GroupManager& groupManager) {
+    std::string filename;
+    std::cout << "Enter the filename to load groups from: ";
+    std::cin >> filename;
+    std::vector<Group> loadedGroups = FileReader::readFromFile(filename);
+    for (const auto& group : loadedGroups) {
+        groupManager.addGroup(group);
+    }
+    std::cout << "Groups loaded successfully from " << filename << ".txt\n";
+}
+
+void SystemManager::saveGroupToFile(const Group& group) {
+    FileWriter::writeToFile(group);
 }

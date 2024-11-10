@@ -9,14 +9,17 @@
 
 class FileWriter{
     public:
-        static void writeToFile(const GroupManager& groupManager, std::string filename) {
-            std::ofstream myFile(filename + ".txt"); 
+        static void writeToFile(const Group& group) {
+            std::string filename = group.getGroupName() + ".txt";
+            std::ofstream myFile(filename); 
             if (!myFile.is_open()) {
-                std::cerr << "Error: Unable to open file " << filename  << std::endl;
+                std::cerr << "Error: Unable to open file " << filename << std::endl;
                 return;
             }
-            groupManager.displayAllGroups(myFile);
-            std::cout << "Groups saved to " << filename  << std::endl; 
+
+            myFile << group;
+            myFile.close();
+            
         }
 };
 

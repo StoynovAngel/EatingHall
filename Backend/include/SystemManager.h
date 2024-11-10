@@ -16,6 +16,8 @@ public:
     void displayGroups(GroupManager& groupManager) const;
     void getUserFromGroupMenu(GroupManager& groupManager);
     void viewGroupMenu(GroupManager& groupManager);
+    void loadGroupsFromFile(GroupManager& groupManager);
+    void saveGroupToFile(const Group& group); 
 };
 
 #endif
