@@ -2,7 +2,7 @@
 #include <fstream>
 #include "SystemManager.h"
 
-void SystemManager::addGroupMenu() {
+void SystemManager::addGroupMenu(GroupManager& groupManager) {
     std::string groupName;
     double discount, surcharge;
     std::cout << "Enter group name: ";
@@ -10,7 +10,7 @@ void SystemManager::addGroupMenu() {
     std::cout << "Enter discount: ";
     std::cin >> discount;
 
-    if(discount <= 0){
+    if(discount == 0){
         std::cout << "Enter surcharge: ";
         std::cin >> surcharge;
     }else{
@@ -23,7 +23,7 @@ void SystemManager::addGroupMenu() {
     }
 }
 
-void SystemManager::addUserToGroupMenu() {
+void SystemManager::addUserToGroupMenu(GroupManager& groupManager) {
     std::string groupName;
 
     std::cout << "Enter group name to add user: ";
@@ -37,7 +37,7 @@ void SystemManager::addUserToGroupMenu() {
     groupManager.userHandler(group);
 }
 
-void SystemManager::getUserFromGroupMenu() {
+void SystemManager::getUserFromGroupMenu(GroupManager& groupManager) {
     std::string groupName, username;
 
     Group* group = groupManager.groupByNameHelper();
@@ -54,38 +54,8 @@ void SystemManager::getUserFromGroupMenu() {
     }
 }
 
-void SystemManager::viewGroupMenu() {
+void SystemManager::viewGroupMenu(GroupManager& groupManager) {
     Group* group = groupManager.groupByNameHelper();
     if (!group) return;
     std::cout << *group;
-}
-
-
-void SystemManager::showMenu() {
-    int choice;
-    do {
-        std::cout << "\nMenu:\n";
-        std::cout << "1. Add Group\n";
-        std::cout << "2. Add User to Group\n";
-        std::cout << "3. Display unsaved Groups\n";
-        std::cout << "4. Save to File\n";
-        std::cout << "5. Load from File\n";
-        std::cout << "6. Get specific user\n";
-        std::cout << "7. Get specific group\n";
-        std::cout << "0. Exit\n";
-        std::cout << "Enter your choice: ";
-        std::cin >> choice;
-
-        switch (choice) {
-            case 1: addGroupMenu(); break;
-            case 2: addUserToGroupMenu(); break;
-            case 3: groupManager.displayAllGroups(); break;
-            case 4: FileWriter::writeToFile(groupManager, groupManager.searchGroup()); break;
-            case 5: FileReader::readFromFile(groupManager.searchGroup()); break;
-            case 6: getUserFromGroupMenu(); break;
-            case 7: viewGroupMenu(); break;
-            case 0: std::cout << "Exiting...\n"; break;
-            default: std::cout << "Invalid choice. Try again.\n"; break;
-        }
-    } while (choice != 0);
 }

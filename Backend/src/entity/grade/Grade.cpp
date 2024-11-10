@@ -4,7 +4,7 @@
 #include "Validation.h"
 
 Grade::Grade(std::string subject, double mark){
-    if(!Validation::isNotNegative(mark) || !Validation::isAlpha(subject)){
+    if(!Validation::isNotNegative({mark}) || !Validation::isAlpha(subject)){
         throw std::invalid_argument("Invalid grade or subject");
     }
     this->subject = subject;

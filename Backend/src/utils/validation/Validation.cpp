@@ -7,8 +7,13 @@ namespace Validation {
         return !value.empty();
     }
 
-    bool isNotNegative(double value) {
-        return value >= 0;
+    bool isNotNegative(std::initializer_list<double> values) {
+        for (double value : values) {
+            if (value < 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     bool isAlphanumeric(const std::string& value) {
@@ -31,6 +36,10 @@ namespace Validation {
             }
         }
         return true;
+    }
+
+    bool validMark(double value){
+        return (value >= 2 && value <= 6);
     }
 
 }

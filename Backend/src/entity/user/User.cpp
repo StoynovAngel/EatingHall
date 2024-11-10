@@ -16,6 +16,9 @@ User::User(const std::string& username, const std::vector<Grade>& grades, double
     if(!Validation::isAlpha(username)){
         throw std::invalid_argument("Invalid username");
     }
+    if(!Validation::isNotNegative({discount})){
+        throw std::invalid_argument("Discount should be >= 0.");
+    }
     this->username = username;
     this->grades = grades;
     this->discount = discount;

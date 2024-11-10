@@ -1,8 +1,8 @@
 #include <iostream>
-#include <SystemManager.h>
+#include "MenuManager.h"
 
 int main() {
-    SystemManager systemManager;
-    systemManager.showMenu();
+    MenuManager menu;
+    menu.showMenu();
     return 0;
 }

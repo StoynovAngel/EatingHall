@@ -16,6 +16,7 @@ class GroupManager{
         Group* groupByNameHelper();
         void userHandler(Group* group);
         std::string searchGroup();
+        void gradeHandler(std::vector<Grade>& grades);
 };
 
 #endif

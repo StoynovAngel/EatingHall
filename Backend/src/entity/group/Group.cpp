@@ -4,8 +4,11 @@
 #include <stdexcept>
 
 Group::Group(const std::string&  groupName, double discount, double surcharge) {
-    if (!Validation::isAlphanumeric(groupName) || !Validation::isNotNegative(discount)) {
+    if (!Validation::isAlphanumeric(groupName)) {
         throw std::invalid_argument("Invalid group name.");
+    }
+    if (!Validation::isNotNegative({discount, surcharge})){
+        throw std::invalid_argument("Discount and surchange need to be >= 0.");
     }
     this->groupName = groupName;
     this->discount = discount;

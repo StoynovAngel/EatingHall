@@ -47,11 +47,8 @@ Group* GroupManager::groupByNameHelper() {
 void GroupManager::userHandler(Group* group) {
     while (true) {
         std::string username;
-        std::vector<Grade> grades;
-        std::string gradeInput;
-        std::string subjectInput;
-        double mark;
         double userDiscount;
+        std::vector<Grade> grades;
 
         std::cout << "Enter username (or type 'done' to finish): ";
         std::cin >> username;
@@ -62,25 +59,8 @@ void GroupManager::userHandler(Group* group) {
             return;
         }
 
-
         if (group->getGroupName() != "out"){
-            std::cout << "(type 'done' when finished): \n";
-            while (true) {
-                std::cout << "Enter subject: ";
-                std::cin >> subjectInput;
-                if (subjectInput == "done") break;
-
-                std::cout << "Enter mark: ";
-                std::cin >> gradeInput;
-
-                try {
-                    mark = std::stod(gradeInput);
-                    grades.push_back(Grade(subjectInput, mark));
-                } catch (...) {
-                    std::cerr << "Invalid grade. Please enter a valid number or 'done'.\n";
-                }
-            }
-
+            gradeHandler(grades);
         }
         
         User user(username, grades, 0.0); 
@@ -96,4 +76,26 @@ std::string GroupManager::searchGroup(){
     std::cout << "Enter filename: ";
     std::cin >> filename;
     return filename;
+}
+
+void GroupManager::gradeHandler(std::vector<Grade>& grades) {
+    std::string subjectInput;
+    double mark;
+
+    std::cout << "(type 'done' when finished): \n";
+    while (true) {
+        std::cout << "Enter subject: ";
+        std::cin >> subjectInput;
+        if (subjectInput == "done") break;
+
+        std::cout << "Enter mark: ";
+        std::cin >> mark;
+
+        if (!Validation::validMark(mark)) { 
+            std::cerr << "Invalid mark. Must be between 2 and 6.\n";
+            continue;
+        }
+
+        grades.push_back(Grade(subjectInput, mark));
+    }
 }

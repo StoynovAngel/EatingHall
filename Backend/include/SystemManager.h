@@ -10,16 +10,12 @@
 #include "FileWriter.h"
 
 class SystemManager {
-private:
-    GroupManager groupManager; 
-
 public:
-    void addGroupMenu();
-    void addUserToGroupMenu();
-    void displayGroups() const;
-    void showMenu();
-    void getUserFromGroupMenu();
-    void viewGroupMenu();
+    void addGroupMenu(GroupManager& groupManager);
+    void addUserToGroupMenu(GroupManager& groupManager);
+    void displayGroups(GroupManager& groupManager) const;
+    void getUserFromGroupMenu(GroupManager& groupManager);
+    void viewGroupMenu(GroupManager& groupManager);
 };
 
 #endif
