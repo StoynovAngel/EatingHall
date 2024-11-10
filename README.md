@@ -38,6 +38,12 @@ Compile BackendApp:
 ./build/BackendApp
 ```
 
+To delete MakeFile:
+```bash
+make clean
+```
+
+
 ## Contributors:
 
 - [Angel Stoynov](https://github.com/StoynovAngel)
