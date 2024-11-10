@@ -24,8 +24,16 @@ void Group::addUser(const User& user) {
     users.push_back(user);
 }
 
+double Group::getDiscount() const{
+    return discount;
+}
+
 void Group::setDiscount(double discount) {
     this->discount = discount;
+}
+
+double Group::getSurcharge() const{
+    return surcharge;
 }
 
 void Group::setSurcharge(double surcharge){
@@ -48,7 +56,7 @@ User* Group::findUser(const std::string& username) {
 std::ostream& operator<<(std::ostream& os, const Group& group) {
     os << "Group Name: " << group.getGroupName() << "\n";
     os << "    Discount: " << group.discount << "\n";
-    os << "    surcharge: " << group.surcharge << "\n";
+    os << "    Surcharge: " << group.surcharge << "\n";
     os << "Users:" << "\n"; 
     for (const auto& user : group.getUsers()) {
         os << "    " << user << "\n"; 

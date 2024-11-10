@@ -1,24 +1,22 @@
 #include "User.h"
-#include "UserValidation.h"
+#include "Validation.h"
 #include "Grade.h"
 
 #include <iostream>
 #include <vector>
 
 User::User(const std::string& username) {
-    if (!UserValidation::isValidUsername(username)) {
+    if (!Validation::isAlpha(username)) {
         throw std::invalid_argument("Invalid username provided.");
     }
     this->username = username;
-    this->balance = 0;
 }
 
-User::User(const std::string& username, double balance, const std::vector<Grade>& grades, double discount){
-    if(!UserValidation::isValidUsername(username) || !UserValidation::balanceCheck(balance)){
-        throw std::invalid_argument("Invalid username or balance");
+User::User(const std::string& username, const std::vector<Grade>& grades, double discount){
+    if(!Validation::isAlpha(username)){
+        throw std::invalid_argument("Invalid username");
     }
     this->username = username;
-    this->balance = balance;
     this->grades = grades;
     this->discount = discount;
 }
@@ -27,8 +25,8 @@ std::string User::getUsername() const {
     return username;
 }
 
-double User::getBalance() const {
-    return balance;
+void User::setUsername(std::string username){
+    this->username = username;
 }
 
 const std::vector<Grade>& User::getGrades() const {
@@ -38,21 +36,12 @@ const std::vector<Grade>& User::getGrades() const {
 double User::getDiscount() const{
     return discount;
 }
+void User::setDiscount(double discount){
+    this->discount = discount;
+}
 
 void User::addGrade(const Grade& grade){
     grades.push_back(grade);
-}
-
-void User::setUsername(std::string username){
-    this->username = username;
-}
-
-void User::setBalance(double balance){
-    this->balance = balance;
-}
-
-void User::setDiscount(double discount){
-    this->discount = discount;
 }
 
 double User::getAverageGrade() const {
@@ -66,8 +55,14 @@ double User::getAverageGrade() const {
     return sum / grades.size();
 }
 
+void User::updateDiscount() {
+    double avgGrade = getAverageGrade();
+    discount = (avgGrade >= 4.0) ? 5.0 : 0.0;
+}
+
+
 std::ostream& operator<<(std::ostream& os, const User& user) {
-    os << "Username: " << user.getUsername() << "\n    Balance: " << user.getBalance() << "\n    Discount: " << user.getDiscount() << "\n    Grades:\n";
+    os << "Username: " << user.getUsername() << "\n    Discount: " << user.getDiscount() << "\n    Grades:\n";
     for (const auto& grade : user.getGrades()) {
         os << "    " << grade << "\n"; 
     }

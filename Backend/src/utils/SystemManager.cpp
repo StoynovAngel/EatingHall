@@ -1,6 +1,6 @@
-#include "SystemManager.h"
 #include <iostream>
 #include <fstream>
+#include "SystemManager.h"
 
 void SystemManager::addGroupMenu() {
     std::string groupName;

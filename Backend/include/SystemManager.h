@@ -5,7 +5,6 @@
 #include <string>
 #include "Group.h"
 #include "GroupManager.h"
-#include "UserValidation.h"
 #include "User.h"
 #include "FileReader.h"
 #include "FileWriter.h"
