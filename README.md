@@ -38,7 +38,7 @@ Compile BackendApp:
 ./build/BackendApp
 ```
 
-To delete MakeFile:
+To delete MakeFile if needed:
 ```bash
 make clean
 ```
