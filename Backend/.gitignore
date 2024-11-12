@@ -5,8 +5,6 @@
 *.exe
 *.gch
 *.pch
-*.txt
-
 
 # Compiled dynamic libraries
 *.so
