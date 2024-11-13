@@ -11,11 +11,11 @@ class Menu{
         GroupManager& groupManager;
     public:
         Menu(SystemManager& sysManager, GroupManager& grpManager) : systemManager(sysManager), groupManager(grpManager) {}
-        bool isConditionMet = false;
 
         enum MenuState {
             EXIT,
             TO_MAIN_MENU,
+            TO_SINGLE_MENU,
             BACK_TO_INITIAL_MENU,
             CONTINUE
         };

@@ -2,6 +2,10 @@
 
 namespace fs = std::filesystem;
 
+std::string SystemManager::getLastLoadedGroupName(){
+    return lastLoadedGroupName;
+}
+
 void SystemManager::addGroupMenu(GroupManager& groupManager) {
     std::string groupName;
     double discount, surcharge;
@@ -26,7 +30,7 @@ void SystemManager::addGroupMenu(GroupManager& groupManager) {
     }
 }
 
-void SystemManager::addUserToGroupMenu(GroupManager& groupManager) {
+void SystemManager::addUserToMainMenu(GroupManager& groupManager) {
     std::string groupName;
 
     std::cout << "Enter group name to add user: ";
@@ -41,10 +45,38 @@ void SystemManager::addUserToGroupMenu(GroupManager& groupManager) {
     saveGroupToFile(*group);
 }
 
-void SystemManager::getUserFromGroupMenu(GroupManager& groupManager) {
-    std::string groupName, username;
+void SystemManager::addUserToSingleMenu(GroupManager& groupManager) {
+    Group* group = groupManager.getGroupByName(getLastLoadedGroupName());
+
+    if (!group) {
+        std::cout << "No such group" << "\n";
+        return;
+    }
+    groupManager.userHandler(group);
+    saveGroupToFile(*group);
+}
+
+void SystemManager::getUserFromMainMenu(GroupManager& groupManager) {
+    std::string username;
 
     Group* group = groupManager.groupByNameHelper();
+    if (!group) return;
+
+    std::cout << "Enter username to search: ";
+    std::cin >> username;
+
+    User* user = group->findUser(username);
+    if (user) {
+        std::cout << *user;
+    } else {
+        std::cout << "User not found in the group.\n";
+    }
+}
+
+void SystemManager::getUserFromSingleMenu(GroupManager& groupManager) {
+    std::string username;
+
+    Group* group = groupManager.getGroupByName(getLastLoadedGroupName());
     if (!group) return;
 
     std::cout << "Enter username to search: ";
@@ -64,10 +96,18 @@ void SystemManager::viewGroupMenu(GroupManager& groupManager) {
     std::cout << *group;
 }
 
+
+void SystemManager::viewSingleMenu(GroupManager& groupManager) {
+    Group* group = groupManager.getGroupByName(getLastLoadedGroupName());
+    if (!group) return;
+    std::cout << *group;
+}
+
 void SystemManager::loadGroupFromFile(GroupManager& groupManager) {
     std::string filename;
     std::cout << "Enter the filename to load groups from (without .txt): ";
     std::cin >> filename;
+    lastLoadedGroupName = filename;
 
     std::string filePath = "files/" + filename + ".txt";
     

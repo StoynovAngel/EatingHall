@@ -14,3 +14,9 @@ Users:
         Subject: ppe, Grade: 6
         Subject: fizika, Grade: 5
 
+    Username: Viktor
+    Discount: 5
+    Grades:
+        Subject: math, Grade: 5
+        Subject: bel, Grade: 4
+

@@ -6,6 +6,7 @@
 class InitialMenu : public Menu {
     private:
         bool proceedToMainMenu = false;
+        bool proceedToSingleMenu = false;
 
     public:
         InitialMenu(SystemManager& systemManager, GroupManager& groupManager) : Menu(systemManager, groupManager) {}
@@ -24,7 +25,7 @@ class InitialMenu : public Menu {
                 case 1: systemManager.addGroupMenu(groupManager); break;
                 case 2: {
                     systemManager.loadGroupFromFile(groupManager); 
-                    proceedToMainMenu = true; 
+                    proceedToSingleMenu = true; 
                     break;
                 }
                 case 3: {
@@ -43,6 +44,8 @@ class InitialMenu : public Menu {
         MenuState updateCondition() override {
             if (proceedToMainMenu) {
                 return TO_MAIN_MENU;
+            } else if (proceedToSingleMenu){
+                return TO_SINGLE_MENU;
             } else if (!proceedToMainMenu) {
                 return EXIT;
             }

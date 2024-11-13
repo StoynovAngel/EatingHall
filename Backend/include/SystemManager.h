@@ -13,15 +13,21 @@
 #include "FileWriter.h"
 
 class SystemManager {
+private:
+    std::string lastLoadedGroupName;
 public:
     void addGroupMenu(GroupManager& groupManager);
-    void addUserToGroupMenu(GroupManager& groupManager);
-    void displayGroups(GroupManager& groupManager) const;
-    void getUserFromGroupMenu(GroupManager& groupManager);
+    void addUserToSingleMenu(GroupManager& groupManager);
+    void addUserToMainMenu(GroupManager& groupManager);
+    void getUserFromMainMenu(GroupManager& groupManager);
+    void getUserFromSingleMenu(GroupManager& groupManager);
     void viewGroupMenu(GroupManager& groupManager);
+    void viewSingleMenu(GroupManager& groupManager);
     void loadGroupFromFile(GroupManager& groupManager);
     void saveGroupToFile(const Group& group); 
     void loadAllFiles(GroupManager& groupManager);
+
+    std::string getLastLoadedGroupName();
 };
 
 #endif
