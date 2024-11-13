@@ -8,10 +8,12 @@ class InitialMenu : public Menu {
         bool proceedToMainMenu = false;
 
     public:
+        InitialMenu(SystemManager& systemManager, GroupManager& groupManager) : Menu(systemManager, groupManager) {}
+
         void displayOptions() override {
             std::cout << "\nInitial Menu:\n";
             std::cout << "1. Add Group\n";
-            std::cout << "2. Load specific File\n";
+            std::cout << "2. Load a specific file\n";
             std::cout << "3. Load all files\n";
             std::cout << "0. Exit\n";
             std::cout << "Enter your choice: ";

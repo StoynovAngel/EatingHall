@@ -6,9 +6,11 @@
 #include "GroupManager.h"
 
 class Menu{
+    protected:
+        SystemManager& systemManager;
+        GroupManager& groupManager;
     public:
-        SystemManager systemManager;
-        GroupManager groupManager;
+        Menu(SystemManager& sysManager, GroupManager& grpManager) : systemManager(sysManager), groupManager(grpManager) {}
         bool isConditionMet = false;
 
         enum MenuState {

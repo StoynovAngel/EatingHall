@@ -7,13 +7,13 @@ class MainMenu : public Menu {
     private:
         int choice;
     public:
+        MainMenu(SystemManager& systemManager, GroupManager& groupManager) : Menu(systemManager, groupManager) {}
         void displayOptions() override {
             std::cout << "\nMain Menu:\n";
-            std::cout << "1. Add Group\n";
-            std::cout << "2. Add User to Group\n";
-            std::cout << "3. Get specific user\n";
-            std::cout << "4. Get specific group\n";
-            std::cout << "5. Go back to initial menu\n";
+            std::cout << "1. Add User to Group\n";
+            std::cout << "2. Get specific user\n";
+            std::cout << "3. Get specific group\n";
+            std::cout << "4. Go back to initial menu\n";
             std::cout << "0. Exit\n";
             std::cout << "Enter your choice: ";
         }
@@ -21,11 +21,10 @@ class MainMenu : public Menu {
         void handleChoice(int choice) override {
             this->choice = choice;
             switch (choice) {
-                case 1: systemManager.addGroupMenu(groupManager); break;
-                case 2: systemManager.addUserToGroupMenu(groupManager); break;
-                case 3: systemManager.getUserFromGroupMenu(groupManager); break;
-                case 4: systemManager.viewGroupMenu(groupManager); break;
-                case 5: std::cout << "Going back...\n"; break;
+                case 1: systemManager.addUserToGroupMenu(groupManager); break;
+                case 2: systemManager.getUserFromGroupMenu(groupManager); break;
+                case 3: systemManager.viewGroupMenu(groupManager); break;
+                case 4: std::cout << "Going back...\n"; break;
                 case 0: std::cout << "Exiting...\n"; break;
                 default: std::cout << "Invalid choice. Try again.\n"; break;
             }

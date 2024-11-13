@@ -1,0 +1,16 @@
+Group Name: 45
+    Discount: 10
+    Surcharge: 0
+Users:
+    Username: Miro
+    Discount: 5
+    Grades:
+        Subject: Math, Grade: 5
+        Subject: Bel, Grade: 6
+
+    Username: Teodora
+    Discount: 0
+    Grades:
+        Subject: Bio, Grade: 3
+        Subject: PPE, Grade: 4
+

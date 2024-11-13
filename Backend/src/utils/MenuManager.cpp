@@ -1,12 +1,14 @@
 #include "MenuManager.h"
 
 void MenuManager::start() {
-    InitialMenu initialMenu;
+    SystemManager systemManager;
+    GroupManager groupManager; 
+    InitialMenu initialMenu(systemManager, groupManager);
     Menu::MenuState state = initialMenu.show();
     
     while (state != Menu::EXIT) {
         if (state == Menu::TO_MAIN_MENU) {
-            MainMenu mainMenu;
+            MainMenu mainMenu(systemManager, groupManager);
             state = mainMenu.show();
         } else if (state == Menu::BACK_TO_INITIAL_MENU) {
             state = initialMenu.show();

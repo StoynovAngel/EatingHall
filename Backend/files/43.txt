@@ -1,0 +1,16 @@
+Group Name: 43
+    Discount: 5
+    Surcharge: 0
+Users:
+    Username: Angel
+    Discount: 5
+    Grades:
+        Subject: Math, Grade: 6
+        Subject: Bel, Grade: 6
+
+    Username: Vasil
+    Discount: 5
+    Grades:
+        Subject: ppe, Grade: 6
+        Subject: fizika, Grade: 5
+
