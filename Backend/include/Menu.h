@@ -9,24 +9,35 @@ class Menu{
     public:
         SystemManager systemManager;
         GroupManager groupManager;
+        bool isConditionMet = false;
+
+        enum MenuState {
+            EXIT,
+            TO_MAIN_MENU,
+            BACK_TO_INITIAL_MENU,
+            CONTINUE
+        };
+
         virtual void displayOptions() = 0;
         virtual void handleChoice(int choice) = 0;
-        virtual bool isConditionMet() const { return false; }
+        virtual MenuState updateCondition() = 0;
 
-        void show() {
+        MenuState show() {
             int choice;
             do
             {
                 displayOptions();
-                std::cout << "Enter your choice: ";
                 std::cin >> choice;
                 handleChoice(choice);
 
-                if (isConditionMet()) {
-                    break;
+                MenuState state = updateCondition();
+
+                if (state != CONTINUE) {
+                    return state;
                 }
                 
             } while (choice != 0);
+            return EXIT;
         }
 };
 

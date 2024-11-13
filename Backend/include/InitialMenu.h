@@ -14,6 +14,7 @@ class InitialMenu : public Menu {
             std::cout << "2. Load specific File\n";
             std::cout << "3. Load all files\n";
             std::cout << "0. Exit\n";
+            std::cout << "Enter your choice: ";
         }
 
         void handleChoice(int choice) override {
@@ -37,9 +38,13 @@ class InitialMenu : public Menu {
                 default: std::cout << "Invalid choice. Try again.\n"; break;
             }
         }
-        
-        bool isConditionMet() const override {
-            return proceedToMainMenu;
+        MenuState updateCondition() override {
+            if (proceedToMainMenu) {
+                return TO_MAIN_MENU;
+            } else if (!proceedToMainMenu) {
+                return EXIT;
+            }
+            return CONTINUE;
         }  
 };
 
