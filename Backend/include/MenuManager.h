@@ -4,8 +4,6 @@
 #include "InitialMenu.h" 
 #include "MainMenu.h"
 #include "SingleMenu.h"
-#include "SystemManager.h"
-#include "GroupManager.h"
 
 class MenuManager {
 public:
