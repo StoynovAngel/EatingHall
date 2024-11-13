@@ -13,9 +13,9 @@ Eating Hall is a C/C++ university project for dealing with university eating hal
 - Groups/Users are saved inside files folder.
 - UML diagram for better visualization.
 
-<img src="https://imgur.com/Toy6w67" alt="Initial menu"/>
-<img src="https://imgur.com/4me81yn" alt="Main menu"/>
-<img src="https://imgur.com/ANmHtjK" alt="Grupa"/>
+<img src="https://imgur.com/Toy6w67.png" alt="Initial menu"/>
+<img src="https://imgur.com/4me81yn.png" alt="Main menu"/>
+<img src="https://imgur.com/ANmHtjK.png" alt="Grupa"/>
 
 ## Prerequisites:
 
