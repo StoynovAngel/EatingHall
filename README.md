@@ -2,6 +2,21 @@
 
 Eating Hall is a C/C++ university project for dealing with university eating hall.
 
+## Features:
+
+- Functional MakeFile which builds all classes in the build folder.
+- Easy to run. Execute BackendApp.
+- Different menus based on user's input.
+- Basic CRUD features - add groups/users and edit.
+- Option to load specific file.
+- Custom .txt format for group and user.
+- Groups/Users are saved inside files folder.
+- UML diagram for better visualization.
+
+<img src="https://imgur.com/Toy6w67" alt="Initial menu"/>
+<img src="https://imgur.com/4me81yn" alt="Main menu"/>
+<img src="https://imgur.com/ANmHtjK" alt="Grupa"/>
+
 ## Prerequisites:
 
 1. WSL (Windows Subsystem for Linux)
@@ -39,10 +54,10 @@ Compile BackendApp:
 ```
 
 To delete MakeFile if needed:
+
 ```bash
 make clean
 ```
-
 
 ## Contributors:
 
