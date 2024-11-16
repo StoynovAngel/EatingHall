@@ -20,7 +20,7 @@ namespace Validation {
         if (!isNotEmpty(value)) return false;
 
         for (char t : value) {
-            if (!std::isalnum(t)) {
+            if (!std::isalnum(t) && t != ' ') {
                 return false;
             }
         }
