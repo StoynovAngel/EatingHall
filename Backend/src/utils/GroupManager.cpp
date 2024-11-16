@@ -103,7 +103,8 @@ void GroupManager::gradeHandler(std::vector<Grade>& grades) {
     std::cout << "(type 'done' when finished): \n";
     while (true) {
         std::cout << "Enter subject: ";
-        std::cin >> subjectInput;
+        std::cin.ignore();
+        std::getline(std::cin, subjectInput);
         if (subjectInput == "done") break;
 
         std::cout << "Enter mark: ";
