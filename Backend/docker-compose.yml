@@ -1,0 +1,11 @@
+services:
+  app:
+    image: eating-hall-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./files:/app/files
+    command: ["./build/BackendApp"]
+    stdin_open: true
+    tty: true

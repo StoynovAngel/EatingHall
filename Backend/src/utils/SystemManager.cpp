@@ -116,8 +116,6 @@ void SystemManager::loadGroupFromFile(GroupManager& groupManager) {
     for (const auto& group : loadedGroups) {
         groupManager.addGroup(group);
     }
-    
-    std::cout << "Groups loaded successfully from " << filePath << "\n";
 }
 
 void SystemManager::saveGroupToFile(const Group& group) {

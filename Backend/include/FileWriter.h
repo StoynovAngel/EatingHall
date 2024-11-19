@@ -10,7 +10,8 @@
 class FileWriter{
     public:
         static void writeToFile(const Group& group, const std::string& filepath) {
-            std::filesystem::create_directories("files");
+            std::filesystem::path path(filepath);
+            std::filesystem::create_directories(path.parent_path());
 
             std::ofstream myFile(filepath);
             if (!myFile.is_open()) {
