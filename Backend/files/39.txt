@@ -1,0 +1,10 @@
+Group Name: 39
+    Discount: 5
+    Surcharge: 0
+Users:
+    Username: Test
+    Discount: 5
+    Grades:
+        Subject: math, Grade: 5
+        Subject: bel, Grade: 3
+
