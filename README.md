@@ -41,23 +41,25 @@ Go to Backend directory:
 cd Backend
 ```
 
+### Option 1: Using Docker
+Docker build & run:
+```bash
+docker-compose run --build --service-ports app
+```
+### Option 2: Manual Compilation
 Create the MakeFile:
-
 ```bash
 make
 ```
-
 Compile BackendApp:
-
 ```bash
 ./build/BackendApp
 ```
-
-To delete MakeFile if needed:
-
+Clean up(optional):
 ```bash
 make clean
 ```
+
 
 ## Contributors:
 
